@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tình yêu 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .text {
+      position: absolute;
+      font-size: 2em;
+      white-space: nowrap;
+      animation: float 10s linear infinite;
+      opacity: 0.9;
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate3d(100vw, 0, 0);
+      }
+      100% {
+        transform: translate3d(-100vw, 0, 0);
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    const messages = [
+      { text: "đồng ý nhé", color: "#ff69b4" },             // hồng
+      { text: "Luôn bên nhau nhé", color: "deepskyblue" },  // xanh da trời
+      { text: "1 Year Anniversary", color: "white" },        // trắng
+      { text: "Love you", color: "#ff69b4" },                // hồng
+      { text: "In every universe", color: "deepskyblue" }    // xanh da trời
+    ];
+
+    function createText() {
+      const message = messages[Math.floor(Math.random() * messages.length)];
+      const text = document.createElement("div");
+      text.className = "text";
+      text.innerText = message.text;
+      text.style.color = message.color;
+      text.style.top = Math.random() * 100 + "vh";
+      text.style.left = Math.random() * 100 + "vw";
+      text.style.animationDuration = (5 + Math.random() * 10) + "s";
+      document.body.appendChild(text);
+
+      setTimeout(() => {
+        text.remove();
+      }, 15000);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createText, 300);
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
